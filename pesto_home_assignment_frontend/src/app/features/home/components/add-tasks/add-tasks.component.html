@@ -1,0 +1,37 @@
+<div style="display: flex; justify-content: space-between; padding: 30px 30px 0px 30px; background: brown; color: white;
+    position: sticky; top: 0; z-index: 100;">
+    <div style="font-size: 20px; font-weight: 600;">ADD TASK</div>
+    <div (click)="closeDialog()" style="padding-bottom: 20px; cursor: pointer;">
+        <mat-icon style="color: white;">close</mat-icon>
+    </div>
+</div>
+
+<div style="padding: 20px;">
+    <form [formGroup]="tasksFormGroup" style="display: flex; flex-direction: column;">
+
+        <mat-form-field>
+            <mat-label>Title</mat-label>
+            <input matInput placeholder="Title" formControlName="title" required>
+            <mat-error>Title is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Description</mat-label>
+            <input matInput placeholder="Description" formControlName="description">
+            <mat-error>Description is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="status" placeholder="Select Status">
+                <mat-option *ngFor="let status of statuses" [value]="status">
+                    {{status}}
+                </mat-option>
+            </mat-select>
+            <mat-error>Status is required</mat-error>
+        </mat-form-field>
+
+        <button [disabled]="!tasksFormGroup.valid" mat-raised-button color="primary" (click)="addTask()">Add Task</button>
+
+    </form>
+</div>

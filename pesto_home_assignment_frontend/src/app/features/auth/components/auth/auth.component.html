@@ -1,0 +1,79 @@
+<div class="root-container">
+    <div class="auth-container">
+        <div class="field-container">
+
+            <div *ngIf="isLogin">
+                <h2 class="title">Login</h2>
+                <form [formGroup]="loginFormGroup!" class="form-group">
+                    <mat-form-field>
+                        <mat-label>Email</mat-label>
+                        <input matInput type="email" placeholder="Email" formControlName="email" required>
+                        <mat-error>Email is required</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Password</mat-label>
+                        <input matInput type="password" placeholder="Password" formControlName="password" required>
+                        <mat-error>Password is required</mat-error>
+                    </mat-form-field>
+
+                    <div class="button-section">
+                        <button *ngIf="!(loadingService.loading$ | async)" mat-raised-button color="primary"
+                            class="login-button" (click)="login()" [disabled]="!loginFormGroup?.valid">Login</button>
+                        <div *ngIf="(loadingService.loading$ | async)"
+                            style="display: flex; align-items: center; justify-content: center;">
+                            <mat-spinner [diameter]="50"></mat-spinner>
+                        </div>
+                    </div>
+
+                    <div class="text-align">Don't have an account? <span (click)="toggleAuth()"
+                            class="link"><u>SignUp</u></span></div>
+                </form>
+            </div>
+
+            <div *ngIf="!isLogin">
+                <h2 class="title">Register</h2>
+                <form [formGroup]="registerFormGroup!" class="form-group">
+                    <mat-form-field>
+                        <mat-label>Full Name</mat-label>
+                        <input matInput type="text" placeholder="Full Name" formControlName="fullName" required>
+                        <mat-error>Full Name is required</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Email</mat-label>
+                        <input matInput type="email" placeholder="Email" formControlName="email" required>
+                        <mat-error>Email is required</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Password</mat-label>
+                        <input matInput type="password" placeholder="Password" formControlName="password" required>
+                        <mat-error>Password is required</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Confirm Password</mat-label>
+                        <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword"
+                            required>
+                        <mat-error>Please re-enter password</mat-error>
+                    </mat-form-field>
+
+                    <div class="button-section">
+                        <button *ngIf="!(loadingService.loading$ | async)" mat-raised-button color="primary"
+                            class="signup-button" (click)="register()" [disabled]="!registerFormGroup?.valid">Create
+                            Account</button>
+                        <div *ngIf="(loadingService.loading$ | async)"
+                            style="display: flex; align-items: center; justify-content: center;">
+                            <mat-spinner [diameter]="50"></mat-spinner>
+                        </div>
+                    </div>
+
+                    <div class="text-align">Already have an account? <span (click)="toggleAuth()"
+                            class="link"><u>Login</u></span></div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
