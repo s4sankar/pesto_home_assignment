@@ -8,13 +8,16 @@ const taskSchema = new Schema({
     },
     description : {
         type: String,
-        required: true
     },
     status : {
         type: String,
         required: true,
         enum: ['Todo', 'InProgress', 'Done'],
         default: 'Todo'
+    },
+    userId: {
+        type: String,
+        required: true
     }
 }, {
     timestamps: true
